@@ -1037,241 +1037,40 @@ paths:
       tags:
         - PDF Parser
       summary: Pdf Parser
-      description: |-
-        Get the parsed results of your uploaded PDFs.
-        
-        Please note: to upload documents, you need to use the `Upload Document` API; for scanned files, please specify UploadOcrType to parse.
-        
-        **Response**
-        
-        `Document`: 
-        
-        | parameter   | description |
-        |--------|------|
-        | id  | upload_id   |
-        | name  | document_name   |
-        | page_type  | page_type, according to the `page_type` used when uploading the document.   |
-        | ocr_type  | ocr_type, according to the `ocr_type` used when uploading the document.   |
-        | page_count  | total pages of the document, which is also the total pages consumed in this parsing.   |
-        | create_time  | document_upload time   |
-        
-        `elements`:The document's  elements chunk information, including specific locations and text.
-
-        * The main types of elements are:
-
-          * paragraph
-          * table
-          * figure
-          * page_header
-          * page_footer
-
-
-        For more detailed information, please refer to the Response example.
-        
-        * Response example:
-        ```json
-        {
-            "status": "ok",
-            "data": {
-                "document": {                                                         // document info
-                    "id": "26a08207-0c8e-4c6b-9600-08a6bb4b6789",                     // upload id
-                    "name": "xxxxxx.pdf",                                             // document name
-                    "page_type": "elite",                                             // page type
-                    "ocr_type": "auto",                                               // ocr type
-                    "page_count": 5,                                                  // page count
-                    "create_time": 1730089519                                         // create timestamp
-                },
-                "elements": [                                                         // elements info
-                    {
-                        "page": 0,                                                    // element page
-                        "text": "xxxxxxxxxx",                                         // element text
-                        "type": "page_header",                                        // element type: page_header
-                        "index": 0,                                                   // element index
-                        "outline": [                                                  // element outline
-                            54.15061242580414,                                        // element outline: left
-                            46.73454988598824,                                        // element outline: top
-                            558.0768379211426,                                        // element outline: right
-                            67.44403215646744                                         // element outline: bottom
-                        ],
-                        "rotation": 0,                                                // angle of rotation
-                        "is_heading": false,                                          // element is not heading
-                        "syllabus": -1                                                // syllabus index
-                    },
-                    {
-                        "page": 0,
-                        "text": "XXXXXXXXX",                                        
-                        "type": "paragraph",                                          // element type: paragraph
-                        "index": 8,
-                        "outline": [
-                            88.8379647731781,
-                            339.749862742424,
-                            541.4502785682678,
-                            348.09281425476075
-                        ],
-                        "rotation": 0,
-                        "is_heading": true,                                           // element is heading
-                        "syllabus": -1
-                    },
-                    {
-                        "page": 3,
-                        "type": "table",                                              // element type: table
-                        "grid": {                                                     // table grid info 
-                            "rows": [                                                 // row line 
-                                7.860376572608942,
-                                36.0364997625351,
-                                58.635456681251526,
-                                81.14922146797178,
-                                98.57856769561769
-                            ],
-                            "columns": [                                              // col line
-                                14.636069440841673,
-                                61.14946856498718,
-                                106.51888520717623
-                            ]
-                        },
-                        "cells": {                                                    // cells info 
-                            "0_0": {                                                  // cells index, format: {row_index}_{col_index}
-                                "text": "Intro"
-                            },
-                            "0_2": {
-                                "text": "Length/B"
-                            },
-                            ...
-                        },
-                        "index": 68,                                                   // element indeex
-                        "title": "Tab 1 Serial port",                                  // table title
-                        "merged": [                                                    // table cell merge info
-                            [
-                                [                                                    
-                                    0,
-                                    0
-                                ],
-                                [
-                                    0,
-                                    1
-                                ]
-                            ],
-                            ...
-                        ],
-                        "outline": [
-                            62.470155930519105,
-                            171.8411531686783,
-                            282.46920719146726,
-                            296.70778369903564
-                        ],
-                        "position": null,
-                        "rotation": 0,
-                        "is_heading": false 
-                        "syllabus": 57,
-                        "title_index": 67
-                    },
-                    {
-                        "page": 8,
-                        "type": "image",                                            // element type: image
-                        "index": 104,
-                        "outline": [
-                            35.0,
-                            45.0,
-                            577.0,
-                            254.0
-                        ],
-                        "position": [
-                            0,
-                            0
-                        ],
-                        "rotation": 0,
-                        "is_heading": false, 
-                        "syllabus": 76
-                    },
-                    {
-                        "page": 5,                    
-                        "text": "xxxxxxx",
-                        "type": "shape",                                            // element type: shape
-                        "index": 49,
-                        "outline": [
-                            206.7656,
-                            98.4073,
-                            379.5701,
-                            202.0085
-                        ],
-                        "position": [
-                            0,
-                            0
-                        ],
-                        "rotation": 0,
-                        "is_heading": false,
-                        "syllabus": 21
-                    },
-                    {
-                        "page": 25,
-                        "type": "figure",                                             // element type: figure
-                        "index": 406,
-                        "caption": {                                                  // caption info
-                            "text": "Figure B.6: xxxx.",                              // caption text
-                            "outline": [
-                                145.65978624544093,
-                                755.3886497876921,
-                                449.41304623092736,
-                                765.8235573110002
-                            ]
-                        },
-                        "outline": [
-                            70.94628075868386,
-                            73.55555940069547,
-                            523.8772810625109,
-                            765.8235573110002
-                        ],
-                        "rotation": 0,
-                        "is_heading": false,
-                        "syllabus": 75
-                    },
-                    {
-                        "page": 3,
-                        "text": "",
-                        "type": "page_footer",                                        // element type: page_footer
-                        "index": 80,
-                        "outline": [
-                            1.752224612236023,
-                            810.1005857467651,
-                            531.8912698745728,
-                            851.934254360199
-                        ],
-                        "rotation": 0,
-                        "is_heading": false,
-                        "syllabus": -1
-                    },
-                    ...
-                ]
-            }
-        }        
-        ```
-      "operationId": PDF_Parser_pdf_parser_upload_id_get
-      "parameters":
-          - "name": "upload_id"
-            "in": "path"
-            "required": true
-            "schema":
-              "type": "string"
-              "minLength": 36
-              "maxLength": 36
-              "description": "document id, created by `POST /documents/upload` API accordingly."
-              "title": "Upload Id"
-            "description": "document id, created by `POST /documents/upload` API accordingly."
+      description: This API endpoint efficiently processes PDF documents, providing complete and structured JSON data.
+      operationId: PDF_Parser_pdf_parser__upload_id__get
+      security:
+        - HTTPBearer: []
+      parameters:
+        - name: upload_id
+          in: path
+          required: true
+          schema:
+            type: string
+            minLength: 36
+            maxLength: 36
+            description: The document ID generated by the `POST /documents/upload` API.
+            title: Upload Id
+          description: The document ID generated by the `POST /documents/upload` API.
       responses:
         "200":
           description: Successful Response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PDFParseResp'
+                $ref: "#/components/schemas/PDFParseResp"
+        "400":
+          description: Document parsing has not been completed, or the uploaded file format is unsupported (PDF only).
+        "403":
+          description: You do not have permission to access the document.
+        "404":
+          description: The requested document was not found.
         "422":
           description: Validation Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-      security:
-        - HTTPBearer: []
+                $ref: "#/components/schemas/HTTPValidationError"
   /users/quota:
     get:
       tags:
@@ -1614,40 +1413,167 @@ components:
     PDFParseResp:
       properties:
         document:
-          $ref: '#/components/schemas/PDFParserDocument'
+          allOf:
+            - $ref: "#/components/schemas/PDFParserDocument"
+          examples:
+            - create_time: 1730089519
+              id: 26a08207-0c8e-4c6b-9600-08a6bb4b6789
+              name: ChatDOC.pdf
+              ocr_type: auto
+              package_type: elite
+              page_count: 5
         elements:
           items:
-            type: object
+            anyOf:
+              - $ref: "#/components/schemas/Paragraph"
+              - $ref: "#/components/schemas/Table"
+              - $ref: "#/components/schemas/Figure"
+              - $ref: "#/components/schemas/Shape"
+              - $ref: "#/components/schemas/Image"
+              - $ref: "#/components/schemas/PageFooter"
+              - $ref: "#/components/schemas/PageHeader"
           type: array
           title: Elements
+          description: The list of elements in the document. Each element contains properties such as type, page number, content, and additional metadata depending on the element type.
+          examples:
+            - - index: 0
+                is_chapter_title: false
+                outline:
+                  - 54.15
+                  - 46.73
+                  - 558.07
+                  - 67.44
+                page: 0
+                parent_chapter: -1
+                text: ChatDOC
+                type: page_header
+              - index: 8
+                is_chapter_title: true
+                outline:
+                  - 88.83
+                  - 339.74
+                  - 541.45
+                  - 348.09
+                page: 0
+                parent_chapter: -1
+                text: ChatDOC
+                type: paragraph
+              - cells:
+                  "0_0":
+                    text: data
+                  "0_1":
+                    text: status
+                grid:
+                  columns:
+                    - 14.63
+                    - 61.14
+                    - 106.51
+                  rows:
+                    - 7.86
+                    - 36.03
+                    - 58.63
+                    - 81.14
+                    - 98.57
+                index: 68
+                is_chapter_title: false
+                outline:
+                  - 62.47
+                  - 171.84
+                  - 282.46
+                  - 296.7
+                page: 3
+                parent_chapter: 57
+                title: I'm a table title
+                title_index: 67
+                type: table
+              - index: 104
+                is_chapter_title: false
+                outline:
+                  - 35
+                  - 45
+                  - 577
+                  - 254
+                page: 8
+                parent_chapter: 76
+                type: image
+              - index: 49
+                is_chapter_title: false
+                outline:
+                  - 206.76
+                  - 98.4
+                  - 379.57
+                  - 202
+                page: 5
+                parent_chapter: 21
+                text: xxxxxxx
+                type: shape
+              - caption:
+                  outline:
+                    - 145.65
+                    - 755.38
+                    - 449.41
+                    - 765.82
+                  text: "Figure B.6: xxxx."
+                index: 406
+                is_chapter_title: false
+                outline:
+                  - 70.94
+                  - 73.55
+                  - 523.87
+                  - 765.82
+                page: 25
+                type: figure
+              - index: 80
+                is_chapter_title: false
+                outline:
+                  - 1.75
+                  - 810.1
+                  - 531.89
+                  - 851.93
+                page: 3
+                parent_chapter: 75
+                text: xxxx
+                type: page_footer
       type: object
       required:
-          - document
-          - elements
+        - document
+        - elements
       title: PDFParseResp
     PDFParserDocument:
       properties:
         id:
           type: string
           title: Id
+          description: The unique ID for the document.
         name:
           type: string
           title: Name
-        page_type:
-          $ref: '#/components/schemas/ResourcePackageType'
+          description: The name of the document.
+        package_type:
+          type: string
+          enum:
+            - elite
+            - lite
+            - basic
+          title: Package Type
+          description: The package type for the document. Possible values are 'elite', 'lite', and 'basic'. For more details, refer to the `POST /documents/upload` API.
         ocr_type:
-          $ref: '#/components/schemas/UploadOcrType'
+          allOf:
+            - $ref: "#/components/schemas/UploadOcrType"
+          description: The OCR processing type applied to the document. 'disable' means no OCR, 'auto' applies OCR automatically, and 'force' forces OCR regardless of conditions.
         page_count:
           type: integer
           title: Page Count
+          description: The total number of pages in the document.
         create_time:
           type: integer
           title: Create Time
+          description: The timestamp when the document was created or uploaded.
       type: object
       required:
         - id
         - name
-        - page_type
+        - package_type
         - ocr_type
         - page_count
         - create_time
@@ -1693,12 +1619,492 @@ components:
           title: Used Count
           type: integer
           description: Used count of not expired package
+    MergedParagraph:
+      properties:
+        paragraph_indices:
+          items:
+            type: integer
+          type: array
+          title: Paragraph Indices
+          description: Array of paragraph indices that need to be merged. For example, if [1, 2] is provided, paragraphs 1 and 2 will be merged.
+      type: object
+      required:
+        - paragraph_indices
+      title: MergedParagraph
+    Shape:
+      properties:
+        type:
+          type: string
+          enum:
+            - shape
+          const: shape
+          title: Type
+          description: Element type.
+        text:
+          type: string
+          title: Text
+          description: The textual content associated with the element.
+        page:
+          type: integer
+          title: Page
+          description: The page number where the element is located.
+        parent_chapter:
+          type: integer
+          title: Parent Chapter
+          description: The index of the parent chapter within the document. A value of -1 indicates that the element has no parent chapter. Any other positive integer corresponds to the index ID of the parent chapter.
+        index:
+          type: integer
+          title: Index
+          description: The unique ID of the element in the document.
+        outline:
+          items:
+            type: number
+            minimum: 0
+            exclusiveMinimum: 1
+            format: float
+          type: array
+          maxItems: 4
+          minItems: 4
+          title: Outline
+          description: The bounding box of the element, defined by [left, top, right, bottom] coordinates. This represents the smallest rectangle that fully encloses the element.
+        is_chapter_title:
+          type: boolean
+          title: Is Chapter Title
+          description: Indicates whether the element is a chapter title.
+        rotation:
+          type: number
+          title: Rotation
+          description: The rotation angle of the element in degrees. A value of 0 indicates no rotation.
+          default: 0
+      type: object
+      required:
+        - type
+        - text
+        - page
+        - parent_chapter
+        - index
+        - outline
+        - is_chapter_title
+      title: Shape
+    Table:
+      properties:
+        type:
+          type: string
+          enum:
+            - table
+          const: table
+          title: Type
+          description: Element type.
+        page:
+          type: integer
+          title: Page
+          description: The page number where the element is located.
+        parent_chapter:
+          type: integer
+          title: Parent Chapter
+          description: The index of the parent chapter within the document. A value of -1 indicates that the element has no parent chapter. Any other positive integer corresponds to the index ID of the parent chapter.
+        index:
+          type: integer
+          title: Index
+          description: The unique ID of the element in the document.
+        outline:
+          items:
+            type: number
+            minimum: 0
+            exclusiveMinimum: 1
+            format: float
+          type: array
+          maxItems: 4
+          minItems: 4
+          title: Outline
+          description: The bounding box of the element, defined by [left, top, right, bottom] coordinates. This represents the smallest rectangle that fully encloses the element.
+        is_chapter_title:
+          type: boolean
+          title: Is Chapter Title
+          description: Indicates whether the element is a chapter title.
+        rotation:
+          type: number
+          title: Rotation
+          description: The rotation angle of the element in degrees. A value of 0 indicates no rotation.
+          default: 0
+        continued:
+          type: boolean
+          title: Continued
+          description: Indicates whether the table spans across multiple pages. If true, the table continues onto subsequent pages.
+        title_index:
+          type: integer
+          title: Title Index
+          description: The index of the title paragraph in the table, which refers to the header or title of the table.
+        page_merged_table:
+          anyOf:
+            - $ref: "#/components/schemas/MergedTable"
+            - type: "null"
+          description: Provides merging information for tables across multiple pages. Only present in the first table of a merged sequence, mapping table IDs to their row and column relationships.
+        cells:
+          additionalProperties:
+            $ref: "#/components/schemas/TableCell"
+          type: object
+          title: Cells
+          description: Contains the individual cells of the table. The key is the cell index, and the value is a mapping that holds the cell's text content.
+        merged:
+          items:
+            items:
+              items:
+                type: integer
+              type: array
+              maxItems: 2
+              minItems: 2
+            type: array
+          type: array
+          title: Merged
+          description: |-
+            An array of merged cell regions in the table. Each region is represented as an array of row and column indices for the cells included in the merge.
+
+            For example, `[[[1, 0], [1, 1]], [[5, 0], [5, 1]]]` indicates two merged regions: one merging cells at `[1,0]` and `[1,1]`, and another merging cells at `[5,0]` and `[5,1]`.
+        grid:
+          allOf:
+            - $ref: "#/components/schemas/TableGrid"
+          description: Defines the grid structure of the table, including the relative positions of row and column lines within the table's bounding box.
+      type: object
+      required:
+        - type
+        - page
+        - parent_chapter
+        - index
+        - outline
+        - is_chapter_title
+        - continued
+        - title_index
+        - page_merged_table
+        - cells
+      title: Table
+    TableGrid:
+      properties:
+        rows:
+          items:
+            type: number
+          type: array
+          title: Rows
+          description: The relative positions of row lines measured from the top edge of the table.
+        columns:
+          items:
+            type: number
+          type: array
+          title: Columns
+          description: The relative positions of column lines measured from the left edge of the table.
+      type: object
+      title: TableGrid
+    Image:
+      properties:
+        type:
+          type: string
+          enum:
+            - image
+          const: image
+          title: Type
+          description: Element type.
+        page:
+          type: integer
+          title: Page
+          description: The page number where the element is located.
+        parent_chapter:
+          type: integer
+          title: Parent Chapter
+          description: The index of the parent chapter within the document. A value of -1 indicates that the element has no parent chapter. Any other positive integer corresponds to the index ID of the parent chapter.
+        index:
+          type: integer
+          title: Index
+          description: The unique ID of the element in the document.
+        outline:
+          items:
+            type: number
+            minimum: 0
+            exclusiveMinimum: 1
+            format: float
+          type: array
+          maxItems: 4
+          minItems: 4
+          title: Outline
+          description: The bounding box of the element, defined by [left, top, right, bottom] coordinates. This represents the smallest rectangle that fully encloses the element.
+        is_chapter_title:
+          type: boolean
+          title: Is Chapter Title
+          description: Indicates whether the element is a chapter title.
+        rotation:
+          type: number
+          title: Rotation
+          description: The rotation angle of the element in degrees. A value of 0 indicates no rotation.
+          default: 0
+      type: object
+      required:
+        - type
+        - page
+        - parent_chapter
+        - index
+        - outline
+        - is_chapter_title
+      title: Image
+    Figure:
+      properties:
+        type:
+          type: string
+          enum:
+            - figure
+          const: figure
+          title: Type
+          description: Element type.
+        text:
+          type: string
+          title: Text
+          description: The textual content associated with the element.
+        page:
+          type: integer
+          title: Page
+          description: The page number where the element is located.
+        parent_chapter:
+          type: integer
+          title: Parent Chapter
+          description: The index of the parent chapter within the document. A value of -1 indicates that the element has no parent chapter. Any other positive integer corresponds to the index ID of the parent chapter.
+        index:
+          type: integer
+          title: Index
+          description: The unique ID of the element in the document.
+        outline:
+          items:
+            type: number
+            minimum: 0
+            exclusiveMinimum: 1
+            format: float
+          type: array
+          maxItems: 4
+          minItems: 4
+          title: Outline
+          description: The bounding box of the element, defined by [left, top, right, bottom] coordinates. This represents the smallest rectangle that fully encloses the element.
+        is_chapter_title:
+          type: boolean
+          title: Is Chapter Title
+          description: Indicates whether the element is a chapter title.
+        rotation:
+          type: number
+          title: Rotation
+          description: The rotation angle of the element in degrees. A value of 0 indicates no rotation.
+          default: 0
+      type: object
+      required:
+        - type
+        - text
+        - page
+        - parent_chapter
+        - index
+        - outline
+        - is_chapter_title
+      title: Figure
+    TableCell:
+      properties:
+        text:
+          type: string
+          title: Text
+          description: Table cell text.
+      type: object
+      required:
+        - text
+      title: TableCell
+    MergedTable:
+      properties:
+        cells_idx:
+          additionalProperties:
+            additionalProperties:
+              type: string
+            type: object
+          type: object
+          title: Cells Idx
+          description: 'Need merge table indices, like `{1: {"row_col": "row_col"}}`(key is merged cell index, value is the original cell index) then 1 and 2 need to merged'
+      type: object
+      required:
+        - cells_idx
+      title: MergedTable
     PackageQuotaResp:
       title: PackageQuotaResp
       type: object
       properties:
         package:
           $ref: "#/components/schemas/APIPackageInfoResp"
+    PageFooter:
+      properties:
+        type:
+          type: string
+          enum:
+            - page_footer
+          const: page_footer
+          title: Type
+          description: Element type.
+        text:
+          type: string
+          title: Text
+          description: The textual content associated with the element.
+        page:
+          type: integer
+          title: Page
+          description: The page number where the element is located.
+        parent_chapter:
+          type: integer
+          title: Parent Chapter
+          description: The index of the parent chapter within the document. A value of -1 indicates that the element has no parent chapter. Any other positive integer corresponds to the index ID of the parent chapter.
+        index:
+          type: integer
+          title: Index
+          description: The unique ID of the element in the document.
+        outline:
+          items:
+            type: number
+            minimum: 0
+            exclusiveMinimum: 1
+            format: float
+          type: array
+          maxItems: 4
+          minItems: 4
+          title: Outline
+          description: The bounding box of the element, defined by [left, top, right, bottom] coordinates. This represents the smallest rectangle that fully encloses the element.
+        is_chapter_title:
+          type: boolean
+          title: Is Chapter Title
+          description: Indicates whether the element is a chapter title.
+        rotation:
+          type: number
+          title: Rotation
+          description: The rotation angle of the element in degrees. A value of 0 indicates no rotation.
+          default: 0
+      type: object
+      required:
+        - type
+        - text
+        - page
+        - parent_chapter
+        - index
+        - outline
+        - is_chapter_title
+      title: PageFooter
+    PageHeader:
+      properties:
+        type:
+          type: string
+          enum:
+            - page_header
+          const: page_header
+          title: Type
+          description: Element type.
+        text:
+          type: string
+          title: Text
+          description: The textual content associated with the element.
+        page:
+          type: integer
+          title: Page
+          description: The page number where the element is located.
+        parent_chapter:
+          type: integer
+          title: Parent Chapter
+          description: The index of the parent chapter within the document. A value of -1 indicates that the element has no parent chapter. Any other positive integer corresponds to the index ID of the parent chapter.
+        index:
+          type: integer
+          title: Index
+          description: The unique ID of the element in the document.
+        outline:
+          items:
+            type: number
+            minimum: 0
+            exclusiveMinimum: 1
+            format: float
+          type: array
+          maxItems: 4
+          minItems: 4
+          title: Outline
+          description: The bounding box of the element, defined by [left, top, right, bottom] coordinates. This represents the smallest rectangle that fully encloses the element.
+        is_chapter_title:
+          type: boolean
+          title: Is Chapter Title
+          description: Indicates whether the element is a chapter title.
+        rotation:
+          type: number
+          title: Rotation
+          description: The rotation angle of the element in degrees. A value of 0 indicates no rotation.
+          default: 0
+      type: object
+      required:
+        - type
+        - text
+        - page
+        - parent_chapter
+        - index
+        - outline
+        - is_chapter_title
+      title: PageHeader
+    Paragraph:
+      properties:
+        type:
+          type: string
+          enum:
+            - paragraph
+          const: paragraph
+          title: Type
+          description: Element type.
+        text:
+          type: string
+          title: Text
+          description: The textual content associated with the element.
+        page:
+          type: integer
+          title: Page
+          description: The page number where the element is located.
+        parent_chapter:
+          type: integer
+          title: Parent Chapter
+          description: The index of the parent chapter within the document. A value of -1 indicates that the element has no parent chapter. Any other positive integer corresponds to the index ID of the parent chapter.
+        index:
+          type: integer
+          title: Index
+          description: The unique ID of the element in the document.
+        outline:
+          items:
+            type: number
+            minimum: 0
+            exclusiveMinimum: 1
+            format: float
+          type: array
+          maxItems: 4
+          minItems: 4
+          title: Outline
+          description: The bounding box of the element, defined by [left, top, right, bottom] coordinates. This represents the smallest rectangle that fully encloses the element.
+        is_chapter_title:
+          type: boolean
+          title: Is Chapter Title
+          description: Indicates whether the element is a chapter title.
+        rotation:
+          type: number
+          title: Rotation
+          description: The rotation angle of the element in degrees. A value of 0 indicates no rotation.
+          default: 0
+        continued:
+          type: boolean
+          title: Continued
+          description: Indicates whether the paragraph continues across multiple pages.
+        page_merged_paragraph:
+          anyOf:
+            - $ref: "#/components/schemas/MergedParagraph"
+            - type: "null"
+          description: Contains information about paragraphs merged across multiple pages. This field is only present in the first paragraph of a merged sequence.
+      type: object
+      required:
+        - type
+        - text
+        - page
+        - parent_chapter
+        - index
+        - outline
+        - is_chapter_title
+        - continued
+        - page_merged_paragraph
+      title: Paragraph
     QuestionReq:
       title: QuestionReq
       required:
