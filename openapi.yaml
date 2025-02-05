@@ -1445,24 +1445,44 @@ components:
                   - 67.44
                 page: 0
                 parent_chapter: -1
+                rotation: 0
                 text: ChatDOC
                 type: page_header
-              - index: 8
+              - continued: false
+                index: 8
                 is_chapter_title: true
                 outline:
                   - 88.83
                   - 339.74
                   - 541.45
                   - 348.09
-                page: 0
+                page: 1
+                page_merged_paragraph:
+                  paragraph_indices:
+                    - 7
+                    - 8
                 parent_chapter: -1
+                rotation: 0
                 text: ChatDOC
                 type: paragraph
+              - index: 13
+                is_chapter_title: false
+                outline:
+                  - 1.75
+                  - 810.1
+                  - 531.89
+                  - 851.93
+                page: 2
+                parent_chapter: -1
+                rotation: 0
+                text: xxxx
+                type: page_footer
               - cells:
                   "0_0":
                     text: data
                   "0_1":
                     text: status
+                continued: false
                 grid:
                   columns:
                     - 14.63
@@ -1474,8 +1494,21 @@ components:
                     - 58.63
                     - 81.14
                     - 98.57
-                index: 68
+                index: 20
                 is_chapter_title: false
+                merged:
+                  - - - 0
+                      - 0
+                    - - 1
+                      - 0
+                  - - - 0
+                      - 1
+                    - - 0
+                      - 2
+                    - - 0
+                      - 3
+                    - - 0
+                      - 4
                 outline:
                   - 62.47
                   - 171.84
@@ -1483,20 +1516,22 @@ components:
                   - 296.7
                 page: 3
                 parent_chapter: 57
+                rotation: 0
                 title: I'm a table title
                 title_index: 67
                 type: table
-              - index: 104
+              - index: 24
                 is_chapter_title: false
                 outline:
                   - 35
                   - 45
                   - 577
                   - 254
-                page: 8
+                page: 4
                 parent_chapter: 76
+                rotation: 90
                 type: image
-              - index: 49
+              - index: 39
                 is_chapter_title: false
                 outline:
                   - 206.76
@@ -1505,6 +1540,7 @@ components:
                   - 202
                 page: 5
                 parent_chapter: 21
+                rotation: 0
                 text: xxxxxxx
                 type: shape
               - caption:
@@ -1514,26 +1550,16 @@ components:
                     - 449.41
                     - 765.82
                   text: "Figure B.6: xxxx."
-                index: 406
+                index: 46
                 is_chapter_title: false
                 outline:
                   - 70.94
                   - 73.55
                   - 523.87
                   - 765.82
-                page: 25
+                page: 6
+                rotation: 90
                 type: figure
-              - index: 80
-                is_chapter_title: false
-                outline:
-                  - 1.75
-                  - 810.1
-                  - 531.89
-                  - 851.93
-                page: 3
-                parent_chapter: 75
-                text: xxxx
-                type: page_footer
       type: object
       required:
         - document
