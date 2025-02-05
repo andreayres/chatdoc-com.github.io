@@ -1686,7 +1686,6 @@ components:
           items:
             type: number
             minimum: 0
-            exclusiveMinimum: 1
             format: float
           type: array
           maxItems: 4
@@ -1737,7 +1736,6 @@ components:
           items:
             type: number
             minimum: 0
-            exclusiveMinimum: 1
             format: float
           type: array
           maxItems: 4
@@ -1845,7 +1843,6 @@ components:
           items:
             type: number
             minimum: 0
-            exclusiveMinimum: 1
             format: float
           type: array
           maxItems: 4
@@ -1899,7 +1896,6 @@ components:
           items:
             type: number
             minimum: 0
-            exclusiveMinimum: 1
             format: float
           type: array
           maxItems: 4
@@ -1984,7 +1980,6 @@ components:
           items:
             type: number
             minimum: 0
-            exclusiveMinimum: 1
             format: float
           type: array
           maxItems: 4
@@ -2039,7 +2034,6 @@ components:
           items:
             type: number
             minimum: 0
-            exclusiveMinimum: 1
             format: float
           type: array
           maxItems: 4
@@ -2094,7 +2088,6 @@ components:
           items:
             type: number
             minimum: 0
-            exclusiveMinimum: 1
             format: float
           type: array
           maxItems: 4
