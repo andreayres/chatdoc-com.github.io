@@ -1515,6 +1515,14 @@ components:
                   - 282.46
                   - 296.7
                 page: 3
+                page_merged_table:
+                  cells_idx:
+                    "20":
+                      "0_0": "0_0"
+                      "0_1": "0_1"
+                    "21":
+                      "1_0": "0_0"
+                      "1_1": "0_1"
                 parent_chapter: 57
                 rotation: 0
                 title: I'm a table title
@@ -1543,14 +1551,7 @@ components:
                 rotation: 0
                 text: xxxxxxx
                 type: shape
-              - caption:
-                  outline:
-                    - 145.65
-                    - 755.38
-                    - 449.41
-                    - 765.82
-                  text: "Figure B.6: xxxx."
-                index: 46
+              - index: 46
                 is_chapter_title: false
                 outline:
                   - 70.94
@@ -1558,7 +1559,9 @@ components:
                   - 523.87
                   - 765.82
                 page: 6
+                parent_chapter: -1
                 rotation: 90
+                text: Figure 1 .....
                 type: figure
       type: object
       required:
@@ -1755,6 +1758,10 @@ components:
           type: boolean
           title: Continued
           description: Indicates whether the table spans across multiple pages. If true, the table continues onto subsequent pages.
+        title:
+          type: string
+          title: Title
+          description: The text of the table's title. This corresponds to the `text` field of the element identified by the `title_index`.
         title_index:
           type: integer
           title: Title Index
