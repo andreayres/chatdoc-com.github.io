@@ -1696,7 +1696,7 @@ components:
           maxItems: 4
           minItems: 4
           title: Outline
-          description: The bounding box of the element, defined by [left, top, right, bottom] coordinates. This represents the smallest rectangle that fully encloses the element.
+          description: The bounding box of the element, defined by [left, top, right, bottom] coordinates in **points (pt)**. This represents the smallest rectangle that fully encloses the element.
         is_chapter_title:
           type: boolean
           title: Is Chapter Title
@@ -1746,7 +1746,7 @@ components:
           maxItems: 4
           minItems: 4
           title: Outline
-          description: The bounding box of the element, defined by [left, top, right, bottom] coordinates. This represents the smallest rectangle that fully encloses the element.
+          description: The bounding box of the element, defined by [left, top, right, bottom] coordinates in **points (pt)**. This represents the smallest rectangle that fully encloses the element.
         is_chapter_title:
           type: boolean
           title: Is Chapter Title
@@ -1857,7 +1857,7 @@ components:
           maxItems: 4
           minItems: 4
           title: Outline
-          description: The bounding box of the element, defined by [left, top, right, bottom] coordinates. This represents the smallest rectangle that fully encloses the element.
+          description: The bounding box of the element, defined by [left, top, right, bottom] coordinates in **points (pt)**. This represents the smallest rectangle that fully encloses the element.
         is_chapter_title:
           type: boolean
           title: Is Chapter Title
@@ -1910,7 +1910,7 @@ components:
           maxItems: 4
           minItems: 4
           title: Outline
-          description: The bounding box of the element, defined by [left, top, right, bottom] coordinates. This represents the smallest rectangle that fully encloses the element.
+          description: The bounding box of the element, defined by [left, top, right, bottom] coordinates in **points (pt)**. This represents the smallest rectangle that fully encloses the element.
         is_chapter_title:
           type: boolean
           title: Is Chapter Title
@@ -1994,7 +1994,7 @@ components:
           maxItems: 4
           minItems: 4
           title: Outline
-          description: The bounding box of the element, defined by [left, top, right, bottom] coordinates. This represents the smallest rectangle that fully encloses the element.
+          description: The bounding box of the element, defined by [left, top, right, bottom] coordinates in **points (pt)**. This represents the smallest rectangle that fully encloses the element.
         is_chapter_title:
           type: boolean
           title: Is Chapter Title
@@ -2048,7 +2048,7 @@ components:
           maxItems: 4
           minItems: 4
           title: Outline
-          description: The bounding box of the element, defined by [left, top, right, bottom] coordinates. This represents the smallest rectangle that fully encloses the element.
+          description: The bounding box of the element, defined by [left, top, right, bottom] coordinates in **points (pt)**. This represents the smallest rectangle that fully encloses the element.
         is_chapter_title:
           type: boolean
           title: Is Chapter Title
@@ -2102,7 +2102,7 @@ components:
           maxItems: 4
           minItems: 4
           title: Outline
-          description: The bounding box of the element, defined by [left, top, right, bottom] coordinates. This represents the smallest rectangle that fully encloses the element.
+          description: The bounding box of the element, defined by [left, top, right, bottom] coordinates in **points (pt)**. This represents the smallest rectangle that fully encloses the element.
         is_chapter_title:
           type: boolean
           title: Is Chapter Title
