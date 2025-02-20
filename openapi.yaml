@@ -1441,10 +1441,10 @@ components:
             - - index: 0
                 is_chapter_title: false
                 outline:
-                  - 54.15
-                  - 46.73
-                  - 558.07
-                  - 67.44
+                  - 54.2
+                  - 46.7
+                  - 558.1
+                  - 67.4
                 page: 0
                 parent_chapter: -1
                 rotation: 0
@@ -1454,10 +1454,10 @@ components:
                 index: 8
                 is_chapter_title: true
                 outline:
-                  - 88.83
-                  - 339.74
-                  - 541.45
-                  - 348.09
+                  - 88.8
+                  - 339.7
+                  - 541.5
+                  - 348.1
                 page: 1
                 page_merged_paragraph:
                   paragraph_indices:
@@ -1470,10 +1470,10 @@ components:
               - index: 13
                 is_chapter_title: false
                 outline:
-                  - 1.75
+                  - 1.8
                   - 810.1
-                  - 531.89
-                  - 851.93
+                  - 531.9
+                  - 851.9
                 page: 2
                 parent_chapter: -1
                 rotation: 0
@@ -1487,15 +1487,15 @@ components:
                 continued: false
                 grid:
                   columns:
-                    - 14.63
-                    - 61.14
-                    - 106.51
+                    - 14.6
+                    - 61.1
+                    - 106.5
                   rows:
-                    - 7.86
-                    - 36.03
-                    - 58.63
-                    - 81.14
-                    - 98.57
+                    - 7.8
+                    - 36.3
+                    - 58.6
+                    - 81.1
+                    - 98.5
                 index: 20
                 is_chapter_title: false
                 merged:
@@ -1512,9 +1512,9 @@ components:
                     - - 0
                       - 4
                 outline:
-                  - 62.47
-                  - 171.84
-                  - 282.46
+                  - 62.4
+                  - 171.8
+                  - 282.4
                   - 296.7
                 page: 3
                 page_merged_table:
@@ -1533,10 +1533,10 @@ components:
               - index: 24
                 is_chapter_title: false
                 outline:
-                  - 35
-                  - 45
-                  - 577
-                  - 254
+                  - 35.1
+                  - 45.3
+                  - 577.5
+                  - 254.2
                 page: 4
                 parent_chapter: 76
                 rotation: 90
@@ -1544,10 +1544,10 @@ components:
               - index: 39
                 is_chapter_title: false
                 outline:
-                  - 206.76
+                  - 206.7
                   - 98.4
-                  - 379.57
-                  - 202
+                  - 379.5
+                  - 202.3
                 page: 5
                 parent_chapter: 21
                 rotation: 0
@@ -1556,10 +1556,10 @@ components:
               - index: 46
                 is_chapter_title: false
                 outline:
-                  - 70.94
-                  - 73.55
-                  - 523.87
-                  - 765.82
+                  - 70.4
+                  - 73.5
+                  - 523.7
+                  - 765.2
                 page: 6
                 parent_chapter: -1
                 rotation: 90
