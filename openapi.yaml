@@ -880,10 +880,10 @@ paths:
                     {
                         # key: page number
                         # value: rects
-                        '0': [[38.1063, 557.8058, 553.9003, 584.0043]]
+                        "0": [[38.1063, 557.8058, 553.9003, 584.0043]]
                     },
-                    {'1': [[38.0, 152.3994, 523.6151, 178.6392]]},
-                    {'0': [[38.0, 758.0623, 537.0082, 784.0]]},
+                    {"1": [[38.0, 152.3994, 523.6151, 178.6392]]},
+                    {"0": [[38.0, 758.0623, 537.0082, 784.0]]},
                     ...
                 ]
             }
@@ -905,6 +905,37 @@ paths:
         * `source_info`: only responses in the last chunk of server-sent events mode, may be an empty list. So if the last chunk doesn't contain `source_info` attr, it means error occurred. Page number may not be ordered, you can use this information to highlight the source of specific `upload_id` document of the answer in your PDF viewer, by
             calling [`drawSources`](/#section/ChatDOC-Document-Viewer/Methods) method of our DOCViewerSDK, and converting `source_info` to [`Source`](/#section/ChatDOC-Document-Viewer/Source) parameter.
 
+            **For document of pdf/doc/docx format**:
+
+            Structure of `source_info` may be as follows:
+
+            ```json
+            {
+                "source_info": [
+                    {
+                        # key: page number
+                        # value: rects
+                        "0": [[38.1063, 557.8058, 553.9003, 584.0043]]
+                    },
+                ]
+            }
+            ```
+
+            For [`Selected Text`](https://chatdoc.com/blog/4-ways-to-make-queries/#3.-ask-about-selected-text) query type and when `search_entire_doc` is `False`, structure of `source_info` is as follows no matter single document or collection:
+
+            ```json
+            {
+                "source_info": [
+                    {
+                        "rects": {
+                            "0": [[38.1063, 557.8058, 553.9003, 584.0043]]
+                        },
+                        "upload_id": "xxxx"
+                    },
+                ]
+            }
+            ```
+
             **For document of md/epub/txt/website format**:
 
             Structure of `source_info` may be as follows:
@@ -915,7 +946,7 @@ paths:
                     {
                         # key: element data-index
                         # value: element xpath
-                        198: [{xpath: "/html/body/div/div[199]"}]
+                        "198": [{xpath: "/html/body/div/div[199]"}]
                     },
                 ]
             }
@@ -947,14 +978,20 @@ paths:
 
             **For `collection` type**:
 
-            Structure of `source_info` is as follows, which sub document `upload_id` of collection is wrapped in, and `rects` is wrapped inner:
+            Structure of `source_info` is generally as follows, which sub document `upload_id` of collection is wrapped in, and `rects` and `element xpath` is wrapped inner:
 
             ```json
             {
                 "source_info": [
-                    {
+                    { # sub document of pdf/doc/docx format
                         "rects": {
-                            ...
+                            "0": [[38.1063, 557.8058, 553.9003, 584.0043]]
+                        },
+                        "upload_id": "xxxx"
+                    },
+                    { # sub document of md/epub/txt/website format
+                        "rects": {
+                            "198": [{xpath: "/html/body/div/div[199]"}]
                         },
                         "upload_id": "xxxx"
                     },
