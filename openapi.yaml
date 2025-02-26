@@ -431,7 +431,7 @@ info:
 
     ## Question
 
-    Namely message or chat, there can be [4 Ways to Make Queries](https://chatdoc.notion.site/4-Ways-to-Make-Queries-3d8d6d36060b4c7eb1d69e6a32405dd7):
+    Namely message or chat, there can be [4 Ways to Make Queries](https://chatdoc.com/blog/4-ways-to-make-queries/)):
 
     * **Try our Suggested Queries**
     * **Ask About Full Text**
@@ -871,7 +871,7 @@ paths:
 
         **Response**:
 
-        if document is pdf/doc/docx format, structure is as follows:
+        Structure is generally as follows:
 
         ```json
         {
@@ -882,43 +882,10 @@ paths:
                     {
                         # key: page number
                         # value: rects
-                        '0': [[38.1063, 557.8058, 553.9003, 584.0043]]
+                        "0": [[38.1063, 557.8058, 553.9003, 584.0043]]
                     },
-                    {'1': [[38.0, 152.3994, 523.6151, 178.6392]], 'upload_id': 'xxxx'},
-                    {'0': [[38.0, 758.0623, 537.0082, 784.0]], 'upload_id': 'xxxx'},
-                    ...
-                ]
-            }
-        }
-        ```
-
-        if document is md/epub/txt/website format, structure is as follows:
-
-        ```json
-        {
-            "data": {
-                "answer": "answer to the question",
-                "id": question_id,
-                "source_info": [
-                    {
-                    # key: element data-index
-                    # value: element xpath
-                    198: [{xpath: "/html/body/div/div[199]"}]
-                    },
-                    {
-                    "material": "", # selected text with HTML tags
-                    "indexes": [
-                        3,
-                        4,
-                        5,
-                        6
-                    ],
-                    "focusNode": "div[1]/p[5]/text()[1]",
-                    "upload_id": "903d971d-8250-47cc-a649-4b6ca35032dc",
-                    "anchorNode": "div[1]/p[2]/text()[1]",
-                    "focusOffset": "225",
-                    "anchorOffset": "2"
-                }
+                    {"1": [[38.0, 152.3994, 523.6151, 178.6392]]},
+                    {"0": [[38.0, 758.0623, 537.0082, 784.0]]},
                     ...
                 ]
             }
@@ -939,6 +906,100 @@ paths:
 
         * `source_info`: only responses in the last chunk of server-sent events mode, may be an empty list. So if the last chunk doesn't contain `source_info` attr, it means error occurred. Page number may not be ordered, you can use this information to highlight the source of specific `upload_id` document of the answer in your PDF viewer, by
             calling [`drawSources`](/#section/ChatDOC-Document-Viewer/Methods) method of our DOCViewerSDK, and converting `source_info` to [`Source`](/#section/ChatDOC-Document-Viewer/Source) parameter.
+
+            **For document of pdf/doc/docx format**:
+
+            Structure of `source_info` may be as follows:
+
+            ```json
+            {
+                "source_info": [
+                    {
+                        # key: page number
+                        # value: rects
+                        "0": [[38.1063, 557.8058, 553.9003, 584.0043]]
+                    },
+                ]
+            }
+            ```
+
+            For [`Selected Text`](https://chatdoc.com/blog/4-ways-to-make-queries/#3.-ask-about-selected-text) query type and when `search_entire_doc` is `False`, structure of `source_info` is as follows no matter single document or collection:
+
+            ```json
+            {
+                "source_info": [
+                    {
+                        "rects": {
+                            "0": [[38.1063, 557.8058, 553.9003, 584.0043]]
+                        },
+                        "upload_id": "xxxx"
+                    },
+                ]
+            }
+            ```
+
+            **For document of md/epub/txt/website format**:
+
+            Structure of `source_info` may be as follows:
+
+            ```json
+            {
+                "source_info": [
+                    {
+                        # key: element data-index
+                        # value: element xpath
+                        "198": [{xpath: "/html/body/div/div[199]"}]
+                    },
+                ]
+            }
+            ```
+
+            For [`Selected Text`](https://chatdoc.com/blog/4-ways-to-make-queries/#3.-ask-about-selected-text) query type and when `search_entire_doc` is `False`, structure of `source_info` is as follows no matter single document or collection:
+
+            ```json
+            {
+                "source_info": [
+                    {
+                        "material": "", # selected text with HTML tags
+                        "indexes": [
+                            3,
+                            4,
+                            5,
+                            6
+                        ],
+                        "focusNode": "div[1]/p[5]/text()[1]",
+                        "upload_id": "xxxx",
+                        "anchorNode": "div[1]/p[2]/text()[1]",
+                        "focusOffset": "225",
+                        "anchorOffset": "2"
+                    }
+                    ...
+                ]
+            }
+            ```
+
+            **For `collection` type**:
+
+            Structure of `source_info` is generally as follows, which sub document `upload_id` of collection is wrapped in, and `rects` and `element xpath` is wrapped inner:
+
+            ```json
+            {
+                "source_info": [
+                    { # sub document of pdf/doc/docx format
+                        "rects": {
+                            "0": [[38.1063, 557.8058, 553.9003, 584.0043]]
+                        },
+                        "upload_id": "xxxx"
+                    },
+                    { # sub document of md/epub/txt/website format
+                        "rects": {
+                            "198": [{xpath: "/html/body/div/div[199]"}]
+                        },
+                        "upload_id": "xxxx"
+                    },
+                ]
+            }
+            ```
       operationId: Ask_Question_questions_post
       requestBody:
         content:
@@ -972,7 +1033,7 @@ paths:
 
         * `answer`: full content of answer, including content of Markdown format
 
-        * `type`: question type, refer [4 Ways to Make Queries](https://chatdoc.notion.site/4-Ways-to-Make-Queries-3d8d6d36060b4c7eb1d69e6a32405dd7):
+        * `type`: question type, refer [4 Ways to Make Queries](https://chatdoc.com/blog/4-ways-to-make-queries):
             * doc: Ask About Full Text
             * select: Ask About Selected Text
 
@@ -2162,13 +2223,13 @@ components:
           anyOf:
             - $ref: "#/components/schemas/SelectedMeta"
             - $ref: "#/components/schemas/HtmlSelectedMeta"
-          description: When use [**Ask About Selected Text**](https://chatdoc.notion.site/4-Ways-to-Make-Queries-3d8d6d36060b4c7eb1d69e6a32405dd7), this field is acquired from [EVENT_TYPES.CHAT_ICON_CLICKED](/#section/ChatDOC-Document-Viewer/EVENT_TYPES) of our DOCViewerSDK, and then filled with the document `upload_id`, when ask upon a collection, it's the sub document id of collection.
+          description: When use [**Ask About Selected Text**](https://chatdoc.com/blog/4-ways-to-make-queries/#3.-ask-about-selected-text), this field is acquired from [EVENT_TYPES.CHAT_ICON_CLICKED](/#section/ChatDOC-Document-Viewer/EVENT_TYPES) of our DOCViewerSDK, and then filled with the document `upload_id`, when ask upon a collection, it's the sub document id of collection.
         history:
           title: History
           type: array
           items:
             $ref: "#/components/schemas/ChatMessage"
-          description: "chat history, used for [Threaded Chat](https://chatdoc.notion.site/2-Ways-to-Dive-Deeper-1f2e3a8705e744a6872da0d39254f182), this parameter simulates [OpenAI' API](https://platform.openai.com/docs/guides/gpt/chat-completions-api). `history` is question and answer pairs, which is a list of `ChatMessage` objects. The max input tokens of `history`, `selected_meta.material` and `question` is 8000, which is a little less than OpenAI's limit of [Embedding models](https://platform.openai.com/docs/guides/embeddings/what-are-embeddings). Sample parameter is as follows:\n\n        [\n          {\"role\": \"user\", \"content\": \"Who...\"},\n          {\"role\": \"assistant\", \"content\": \"The...\"},\n          {\"role\": \"user\", \"content\": \"Where...\"}\n          {\"role\": \"assistant\", \"content\": \"The...\"},\n        ]\n        "
+          description: "chat history, used for [Threaded Chat](https://chatdoc.com/blog/2-ways-to-dive-deeper/#1.-start-a-thread), this parameter simulates [OpenAI' API](https://platform.openai.com/docs/guides/gpt/chat-completions-api). `history` is question and answer pairs, which is a list of `ChatMessage` objects. The max input tokens of `history`, `selected_meta.material` and `question` is 8000, which is a little less than OpenAI's limit of [Embedding models](https://platform.openai.com/docs/guides/embeddings/what-are-embeddings). Sample parameter is as follows:\n\n        [\n          {\"role\": \"user\", \"content\": \"Who...\"},\n          {\"role\": \"assistant\", \"content\": \"The...\"},\n          {\"role\": \"user\", \"content\": \"Where...\"}\n          {\"role\": \"assistant\", \"content\": \"The...\"},\n        ]\n        "
           default: []
         search_entire_doc:
           title: Search Entire Doc
@@ -2211,13 +2272,13 @@ components:
           anyOf:
             - $ref: "#/components/schemas/SelectedMetaWithUploadId"
             - $ref: "#/components/schemas/HtmlSelectedMeta"
-          description: When use [**Ask About Selected Text**](https://chatdoc.notion.site/4-Ways-to-Make-Queries-3d8d6d36060b4c7eb1d69e6a32405dd7), this field is acquired from [EVENT_TYPES.CHAT_ICON_CLICKED](/#section/ChatDOC-Document-Viewer/EVENT_TYPES) of our DOCViewerSDK.
+          description: When use [**Ask About Selected Text**](https://chatdoc.com/blog/4-ways-to-make-queries/#3.-ask-about-selected-text), this field is acquired from [EVENT_TYPES.CHAT_ICON_CLICKED](/#section/ChatDOC-Document-Viewer/EVENT_TYPES) of our DOCViewerSDK.
         history:
           title: History
           type: array
           items:
             $ref: "#/components/schemas/ChatMessage"
-          description: "chat history, used for [Threaded Chat](https://chatdoc.notion.site/2-Ways-to-Dive-Deeper-1f2e3a8705e744a6872da0d39254f182), this parameter simulates [OpenAI' API](https://platform.openai.com/docs/guides/gpt/chat-completions-api). `history` is question and answer pairs, which is a list of `ChatMessage` objects. The max input tokens of `history`, `selected_meta.material` and `question` is 8000, which is a little less than OpenAI's limit of [Embedding models](https://platform.openai.com/docs/guides/embeddings/what-are-embeddings). Sample parameter is as follows:\n\n        [\n          {\"role\": \"user\", \"content\": \"Who...\"},\n          {\"role\": \"assistant\", \"content\": \"The...\"},\n          {\"role\": \"user\", \"content\": \"Where...\"}\n          {\"role\": \"assistant\", \"content\": \"The...\"},\n        ]\n        "
+          description: "chat history, used for [Threaded Chat](https://chatdoc.com/blog/2-ways-to-dive-deeper/#1.-start-a-thread), this parameter simulates [OpenAI' API](https://platform.openai.com/docs/guides/gpt/chat-completions-api). `history` is question and answer pairs, which is a list of `ChatMessage` objects. The max input tokens of `history`, `selected_meta.material` and `question` is 8000, which is a little less than OpenAI's limit of [Embedding models](https://platform.openai.com/docs/guides/embeddings/what-are-embeddings). Sample parameter is as follows:\n\n        [\n          {\"role\": \"user\", \"content\": \"Who...\"},\n          {\"role\": \"assistant\", \"content\": \"The...\"},\n          {\"role\": \"user\", \"content\": \"Where...\"}\n          {\"role\": \"assistant\", \"content\": \"The...\"},\n        ]\n        "
           default: []
         search_entire_doc:
           title: Search Entire Doc
